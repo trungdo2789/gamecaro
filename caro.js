@@ -2,7 +2,7 @@
 
 const vc = 100;
 const size = 3;
-const d = 1;
+const d = 2;
 var board = BoardInit(size);;//ban co	
 function BoardInit(l) {
     var b = [];
