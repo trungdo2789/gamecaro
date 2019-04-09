@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <style>
+            .grid-container {
+                display: grid;
+                grid-template-columns: 36px 36px 36px;
+                grid-gap: 10px;
+                background-color: #2196F3;
+                padding: 10px;
+                width: 148px;
+                margin: 25px auto;
+            }
+            .grid-container > div {
+                background-color: rgba(255, 255, 255, 0.8);
+                border: 1px solid black;
+                text-align: center;
+                font-size: 30px;
+                height: 36px;
+                cursor: pointer;
+            }
+        </style>
+        <link rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="messagebox/messagebox_style.css">
+        <script src="messagebox/messagebox_script.js"></script>
+        <!-- jQuery library -->
+        <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="container" style="padding: 20px;">
+            <label class="radio-inline"><input type="radio" name="first"
+                    value="p"
+                    checked>Player first</label>
+            <label class="radio-inline"><input type="radio" name="first"
+                    value="b">Bot first</label>
+            <button type="button" class="btn btn-success" onclick="Start();">Play</button>
+            <div id="container" class='grid-container'></div>
+        </div>
+
+        <script src="caro.js"></script>
+    </body>
+</html>
