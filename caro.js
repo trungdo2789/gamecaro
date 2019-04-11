@@ -67,7 +67,8 @@ function Win(player) {
 function MaxValue(depth, alpha, beta) {
     if (Win(1)) return vc;
     if (Win(2)) return -vc;
-    if (depth <= 0||IsFullBoard()) return h();
+    if (depth <= 0) return h();
+    if(IsFullBoard())return 0;
     for (var i = 0; i < size; i++) {
         for (var j = 0; j < size; j++) {
             if (board[i][j] == 0) {
@@ -89,7 +90,8 @@ function MaxValue(depth, alpha, beta) {
 function MinValue(depth, alpha, beta) {
     if (Win(1)) return vc;
     if (Win(2)) return -vc;
-    if (depth <= 0||IsFullBoard()) return h();
+    if (depth <= 0) return h();
+    if(IsFullBoard())return 0;
     for (var i = 0; i < size; i++) {
         for (var j = 0; j < size; j++) {
             if (board[i][j] == 0) {
