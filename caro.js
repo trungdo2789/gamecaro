@@ -2,7 +2,7 @@
 
 const vc = 100;
 const size = 3;
-const d = 1;
+const d = 10;
 var board = BoardInit(size);;//ban co	
 function BoardInit(l) {
     var b = [];
@@ -67,15 +67,20 @@ function Win(player) {
 function MaxValue(depth, alpha, beta) {
     if (Win(1)) return vc;
     if (Win(2)) return -vc;
-    if (depth <= 0) return h();
+    if (depth <= 0||IsFullBoard()) return h();
     for (var i = 0; i < size; i++) {
         for (var j = 0; j < size; j++) {
             if (board[i][j] == 0) {
                 board[i][j] = 1;
                 var val = MinValue(depth - 1, alpha, beta);
                 board[i][j] = 0;
-                if (val > alpha) alpha = val;
-                if (alpha >= beta) return alpha;
+                if (val > alpha) {
+                    alpha = val;
+                }
+                if (alpha >= beta) {
+                   
+                    return alpha;
+                }
             }
         }
     }
@@ -84,15 +89,20 @@ function MaxValue(depth, alpha, beta) {
 function MinValue(depth, alpha, beta) {
     if (Win(1)) return vc;
     if (Win(2)) return -vc;
-    if (depth <= 0) return h();
+    if (depth <= 0||IsFullBoard()) return h();
     for (var i = 0; i < size; i++) {
         for (var j = 0; j < size; j++) {
             if (board[i][j] == 0) {
                 board[i][j] = 2;
-                var val = MaxValue(depth - 1, alpha, beta);
+                 val = MaxValue(depth - 1, alpha, beta);
                 board[i][j] = 0;
-                if (val < beta) beta = val;
-                if (alpha >= beta) return beta;
+                if (val < beta){
+                    beta = val;
+                } 
+                if (alpha >= beta) {
+                    
+                    return  beta;
+                }
             }
         }
     }
@@ -109,7 +119,7 @@ function AlphaBeta(player, depth) {
                     board[i][j] = 1;
                     val = MinValue(depth, alpha, beta);
                     board[i][j] = 0;
-                    if (val > alpha || (val == alpha) && (x === undefined && y === undefined)) { alpha = val; x = i; y = j; }
+                    if (val > alpha||(x==undefined&&y==undefined)) { alpha = val; x = i; y = j; }
                 }
             }
         }
@@ -120,16 +130,24 @@ function AlphaBeta(player, depth) {
                     board[i][j] = 2;
                     val = MaxValue(depth, alpha, beta);
                     board[i][j] = 0;
-                    if (val < beta || (val == alpha) && (x === undefined && y === undefined)) { beta = val; x = i; y = j; }
+                    if (val < beta ||(x==undefined&&y==undefined)) { beta = val; x = i; y = j; }
                 }
             }
         }
     }
-    // if (x===undefined && y===undefined) { x = i; y = j; }
     board[x][y] = player;
     document.getElementById(x + '-' + y).innerHTML = 'X';
 }
-
+function consoLog(x,y,p){
+    for(var i=0;i<board.length;i++){
+        var line='';
+        for(var j=0;j<board.length;j++){
+            line+=' '+board[i][j];
+        }
+        console.log(line);
+    }
+    console.log(x+','+y+':'+p);
+}
 function IsFullBoard() {
     for (var i = 0; i < size; i++)
         for (var j = 0; j < size; j++)
@@ -165,6 +183,7 @@ function PlayerClick(event, x, y) {
     if (IsFullBoard() == 1) { doMessageBox('hoa`'); stop = 1; return; }
 
 }
+
 function Start() {
     board = BoardInit(size);
     stop = 0;
