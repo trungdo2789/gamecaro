@@ -1,6 +1,1 @@
-<<<<<<< HEAD
-﻿ffffffffffffffffffeature2
-sửa fusdsadsadwswzsw
-=======
-﻿sửa feature 2
->>>>>>> 0ef1ee79b438e7eb876cf913f725c67cac4d289d
+﻿﻿sửa feature 2
